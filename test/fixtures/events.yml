@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  name: MyString
+  description: MyString
+  date: 2018-12-25
+  reminder: 2018-12-25
+  calendar: one
+
+two:
+  name: MyString
+  description: MyString
+  date: 2018-12-25
+  reminder: 2018-12-25
+  calendar: two
