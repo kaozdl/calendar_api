@@ -1,31 +1,33 @@
+# frozen_string_literal: true
+
 class EventController < ApplicationController
   before_action :set_user
   before_action :set_user_calendar
-  before_action :set_user_calendar_event, only: [:show, :update, :destroy]
-#                   Prefix Verb   URI Pattern   Controller#Action
+  before_action :set_user_calendar_event, only: %i[show update destroy]
+  #                   Prefix Verb   URI Pattern   Controller#Action
 
-#user_calendar_event_index GET    /user/:user_id/calendar/:calendar_id/event(.:format)event#index
+  # user_calendar_event_index GET    /user/:user_id/calendar/:calendar_id/event(.:format)event#index
   def index
     json_response(@calendar.events)
   end
 
-# POST   /user/:user_id/calendar/:calendar_id/event(.:format)event#create
+  # POST   /user/:user_id/calendar/:calendar_id/event(.:format)event#create
   def create
-    @calendar.events.create!(event_params)
-    json_response(@calendar, :created)
+    e = @calendar.events.create!(event_params)
+    json_response(e, :created)
   end
 
-# user_calendar_event GET    /user/:user_id/calendar/:calendar_id/event/:id(.:format)event#show
+  # user_calendar_event GET    /user/:user_id/calendar/:calendar_id/event/:id(.:format)event#show
   def show
     json_response(@event)
   end
 
-# PUT    /user/:user_id/calendar/:calendar_id/event/:id(.:format)event#update
+  # PUT    /user/:user_id/calendar/:calendar_id/event/:id(.:format)event#update
   def update
     @event.update(event_params)
   end
 
-# DELETE /user/:user_id/calendar/:calendar_id/event/:id(.:format)event#destroy
+  # DELETE /user/:user_id/calendar/:calendar_id/event/:id(.:format)event#destroy
   def destroy
     @event.destroy
     head :no_content
